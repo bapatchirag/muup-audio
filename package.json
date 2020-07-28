@@ -1,0 +1,32 @@
+{
+  "name": "muup-audio",
+  "version": "1.0.0",
+  "description": "Play audio converted from text written in custom language MuUp",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bapatchirag/muup-audio.git"
+  },
+  "keywords": [
+    "music",
+    "MuUp",
+    "sheet",
+    "Tone.js"
+  ],
+  "author": "Chirag Bapat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bapatchirag/muup-audio/issues"
+  },
+  "homepage": "https://github.com/bapatchirag/muup-audio#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1"
+  },
+  "dependencies": {
+    "tone": "13.8.25"
+  }
+}

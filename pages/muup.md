@@ -11,7 +11,7 @@ The entire MuUp text is split along commas (separator - ", ") into individual co
 2. A polyphonic chord, specified across octaves, for either individually specified duration or a common duration - Polytones.
 3. A rest specified for a certain number of beats - Notones/Rests.
 
-In MuUp, the Western system of music has been implemented, which would include the notes, durations and octaves explained [here](theory.md).
+In MuUp, the Western system of music has been implemented, which would include the notes, durations and octaves explained [here](theory.md#Notes).
 
 # How to write MuUp
 
@@ -83,3 +83,6 @@ For a complete list of examples, click [here](examples.md).
 # Notes
 - Currently, the MuUp script and this module does not support the writing and playing of dynamics.
 - Playing of polytones which have notes of different durations is currently not supported. To do so, split the notes into sets of notes with the least amount of common time, and group the remaining notes as either monotones or polytones. Examples of this are present [here](examples.md).
+
+<br>
+[Back to home](../README.md)

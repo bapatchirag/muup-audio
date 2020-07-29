@@ -11,7 +11,7 @@ The entire MuUp text is split along commas (separator - ", ") into individual co
 2. A polyphonic chord, specified across octaves, for either individually specified duration or a common duration - Polytones.
 3. A rest specified for a certain number of beats - Notones/Rests.
 
-In MuUp, the Western system of music has been implemented, which would include the notes, durations and octaves explained [here](theory.md#Notes).
+In MuUp, the Western system of music has been implemented, which would include the notes, durations and octaves explained [here](theory.md#notes).
 
 # How to write MuUp
 

@@ -105,3 +105,6 @@ dist
 
 # Node modules
 node_modules/
+
+# Testing subdirectory
+tests/

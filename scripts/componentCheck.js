@@ -228,7 +228,7 @@ function are_correct_durations(no_note_tone, type) {
                     return (element + "n")
                 }
                 else {
-                    return (element + "n.")
+                    return (element.substring(0, element.length - 1) + "n.")
                 }
             })
             result_durations.duration_count = duration_list.length

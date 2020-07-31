@@ -12,13 +12,13 @@ function are_correct_octaves(tone, type) {
 
     if(type == "P") {
         // Get octave number(s)
-        var first_tone_char = tone[0]
+        var first_ptone_char = tone[0]
 
         // If a single octave is specified
-        if(first_tone_char != '[') {
+        if(first_ptone_char != '[') {
             // Only octaves 1 through 7 are recognized
-            if(first_tone_char >= 1 && first_tone_char <= 7) {
-                result_octave.octave = first_tone_char
+            if(first_ptone_char >= 1 && first_ptone_char <= 7) {
+                result_octave.octave = first_ptone_char
                 result_octave.octave_count = 1
             }
             else {
@@ -44,9 +44,9 @@ function are_correct_octaves(tone, type) {
     }
     else if(type == "M") {
         // Get octave number
-        var first_tone_char = tone[0]
-        if(first_tone_char >= 1 && first_tone_char <= 7) {
-            result_octave.octave = first_tone_char
+        var first_mtone_char = tone[0]
+        if(first_mtone_char >= 1 && first_mtone_char <= 7) {
+            result_octave.octave = first_mtone_char
             result_octave.octave_count = 1
         }
         else {
@@ -131,4 +131,110 @@ function are_correct_notes(no_octave_tone, all_notes) {
     }
 }
 
-module.exports = {are_correct_octaves, are_correct_notes}
+/**
+ * Get appropriate measures from octave and note omitted tone string
+ * @param {string} no_note_tone : Octave and note component omitted tone string
+ * @param {string} type : Type of tone
+ * @returns {object} : If valid, durations and number of durations. If invalid, "Bad" and 0
+ */
+function are_correct_durations(no_note_tone, type) {
+    var result_durations = {
+        durations: "Bad",
+        duration_count: 0
+    }
+
+    if(type == "P") {
+        // Check for augmented dot presence
+        if(no_note_tone[no_note_tone.length - 1] != '.') {
+            var duration_unaug = no_note_tone
+            
+            // Check whether duration is valid
+            if(parseInt(duration_unaug) != duration_unaug) {
+                return result_durations
+            }
+            else {
+                result_durations.durations = duration_unaug + "n"
+                result_durations.duration_count = 1
+            }
+        }
+        else {
+            var duration_aug = no_note_tone.substring(0, no_note_tone.length - 1)
+
+            // Check whether duration is valid
+            if(parseInt(duration_aug) != duration_aug) {
+                return result_durations
+            }
+            else {
+                result_durations.durations = duration_aug + "n."
+                result_durations.duration_count = 1
+            }
+        }
+    }
+    else if(type == "M"){
+        if(no_note_tone[0] != '[') {
+            // Check for augmented dot presence
+            if(no_note_tone[no_note_tone.length - 1] != '.') {
+                var duration_unaug_m = no_note_tone
+                
+                // Check whether duration is valid
+                if(parseInt(duration_unaug_m) != duration_unaug_m) {
+                    return result_durations
+                }
+                else {
+                    result_durations.durations = duration_unaug_m + "n"
+                    result_durations.duration_count = 1
+                }
+            }
+            else {
+                var duration_aug_m = no_note_tone.substring(0, no_note_tone.length - 1)
+
+                // Check whether duration is valid
+                if(parseInt(duration_aug_m) != duration_aug_m) {
+                    return result_durations
+                }
+                else {
+                    result_durations.durations = duration_aug_m + "n."
+                    result_durations.duration_count = 1
+                }
+            }
+        }
+        else {
+            // Get complete list of durations
+            var duration_list = no_note_tone.substring(1, no_note_tone.indexOf(']')).split(" ")
+
+            // Check if all durations specified are valid
+            function validate_durations(element) {
+                if(element[element.length - 1] != '.') {
+                    var duration_unaug_temp = element
+                    
+                    // Check whether duration is valid
+                    return (parseInt(duration_unaug_temp) == duration_unaug_temp)
+                }
+                else {
+                    var duration_aug_temp = no_note_tone.substring(0, no_note_tone.length - 1)
+    
+                    // Check whether duration is valid
+                    return (parseInt(duration_aug_temp) == duration_aug_temp)
+                }                
+            }
+            // If at least one element is not valid
+            if(!duration_list.every(validate_durations)) {
+                return result_durations
+            }
+
+            // Generate appropriate result object attributes
+            result_durations.durations = duration_list.map((element) => {
+                if(element[element.length - 1] == '.') {
+                    return (element + "n")
+                }
+                else {
+                    return (element + "n.")
+                }
+            })
+            result_durations.duration_count = duration_list.length
+        }
+    }
+    return result_durations
+}
+
+module.exports = {are_correct_octaves, are_correct_notes, are_correct_durations}

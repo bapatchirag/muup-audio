@@ -146,26 +146,26 @@ function are_correct_durations(no_note_tone, type) {
     if(type == "P") {
         // Check for augmented dot presence
         if(no_note_tone[no_note_tone.length - 1] != '.') {
-            var duration_unaug = no_note_tone
+            var duration_unaug_single = no_note_tone
             
             // Check whether duration is valid
-            if(parseInt(duration_unaug) != duration_unaug) {
+            if(parseInt(duration_unaug_single) != duration_unaug_single) {
                 return result_durations
             }
             else {
-                result_durations.durations = duration_unaug + "n"
+                result_durations.durations = duration_unaug_single + "n"
                 result_durations.duration_count = 1
             }
         }
         else {
-            var duration_aug = no_note_tone.substring(0, no_note_tone.length - 1)
+            var duration_aug_single = no_note_tone.substring(0, no_note_tone.length - 1)
 
             // Check whether duration is valid
-            if(parseInt(duration_aug) != duration_aug) {
+            if(parseInt(duration_aug_single) != duration_aug_single) {
                 return result_durations
             }
             else {
-                result_durations.durations = duration_aug + "n."
+                result_durations.durations = duration_aug_single + "n."
                 result_durations.duration_count = 1
             }
         }
@@ -174,26 +174,26 @@ function are_correct_durations(no_note_tone, type) {
         if(no_note_tone[0] != '[') {
             // Check for augmented dot presence
             if(no_note_tone[no_note_tone.length - 1] != '.') {
-                var duration_unaug_m = no_note_tone
+                var duration_unaug_single = no_note_tone
                 
                 // Check whether duration is valid
-                if(parseInt(duration_unaug_m) != duration_unaug_m) {
+                if(parseInt(duration_unaug_single) != duration_unaug_single) {
                     return result_durations
                 }
                 else {
-                    result_durations.durations = duration_unaug_m + "n"
+                    result_durations.durations = duration_unaug_single + "n"
                     result_durations.duration_count = 1
                 }
             }
             else {
-                var duration_aug_m = no_note_tone.substring(0, no_note_tone.length - 1)
+                var duration_aug_single = no_note_tone.substring(0, no_note_tone.length - 1)
 
                 // Check whether duration is valid
-                if(parseInt(duration_aug_m) != duration_aug_m) {
+                if(parseInt(duration_aug_single) != duration_aug_single) {
                     return result_durations
                 }
                 else {
-                    result_durations.durations = duration_aug_m + "n."
+                    result_durations.durations = duration_aug_single + "n."
                     result_durations.duration_count = 1
                 }
             }
@@ -205,16 +205,16 @@ function are_correct_durations(no_note_tone, type) {
             // Check if all durations specified are valid
             function validate_durations(element) {
                 if(element[element.length - 1] != '.') {
-                    var duration_unaug_temp = element
+                    var duration_unaug_multi = element
                     
                     // Check whether duration is valid
-                    return (parseInt(duration_unaug_temp) == duration_unaug_temp)
+                    return (parseInt(duration_unaug_multi) == duration_unaug_multi)
                 }
                 else {
-                    var duration_aug_temp = no_note_tone.substring(0, no_note_tone.length - 1)
+                    var duration_aug_multi = no_note_tone.substring(0, no_note_tone.length - 1)
     
                     // Check whether duration is valid
-                    return (parseInt(duration_aug_temp) == duration_aug_temp)
+                    return (parseInt(duration_aug_multi) == duration_aug_multi)
                 }                
             }
             // If at least one element is not valid

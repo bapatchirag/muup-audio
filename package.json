@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/bapatchirag/muup-audio#readme",
   "devDependencies": {
+    "browserify": "^16.5.1",
     "chai": "^4.2.0",
     "mocha": "^8.0.1"
   },

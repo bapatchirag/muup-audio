@@ -68,6 +68,7 @@ function getPolytoneComponents(tone) {
     if(poly_obj.durations == "Bad") {
         return poly_obj
     }
+    poly_obj.bad_element_count--
 
     // Return final errorless polytone object
     return poly_obj

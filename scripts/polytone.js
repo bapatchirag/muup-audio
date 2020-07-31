@@ -11,7 +11,6 @@ class Polytone {
         this.notes = "Bad"
         this.note_count = 0
         this.duration = "Bad"
-        this.duration_count = 0
         this.bad_element_count = 3
     }
 }
@@ -64,10 +63,9 @@ function getPolytoneComponents(tone) {
     // Get duration(s)
     var duration_obj = comp_check.are_correct_durations(non_note_tone, "P")
     poly_obj.duration = duration_obj.durations
-    poly_obj.duration_count = duration_obj.duration_count
 
     // Checks for bad durations - extra condition to double check
-    if(poly_obj.duration_count == 0 || poly_obj.durations == "Bad") {
+    if(poly_obj.durations == "Bad") {
         return poly_obj
     }
 

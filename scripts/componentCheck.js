@@ -206,15 +206,15 @@ function are_correct_durations(no_note_tone, type) {
             function validate_durations(element) {
                 if(element[element.length - 1] != '.') {
                     var duration_unaug_multi = element
-                    
+
                     // Check whether duration is valid
-                    return (!(/^\d+$/.test(duration_unaug_multi)) || parseInt(duration_unaug_multi) == duration_unaug_multi)
+                    return ((/^\d+$/.test(duration_unaug_multi)) && parseInt(duration_unaug_multi) == duration_unaug_multi)
                 }
                 else {
-                    var duration_aug_multi = no_note_tone.substring(0, no_note_tone.length - 1)
+                    var duration_aug_multi = element.substring(0, element.length - 1)
     
                     // Check whether duration is valid
-                    return (!(/^\d+$/.test(duration_aug_multi)) || parseInt(duration_aug_multi) == duration_aug_multi)
+                    return ((/^\d+$/.test(duration_aug_multi)) && parseInt(duration_aug_multi) == duration_aug_multi)
                 }                
             }
             // If at least one element is not valid

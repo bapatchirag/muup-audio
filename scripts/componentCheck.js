@@ -237,4 +237,38 @@ function are_correct_durations(no_note_tone, type) {
     return result_durations
 }
 
-module.exports = {are_correct_octaves, are_correct_notes, are_correct_durations}
+/**
+ * Get appropriate rest type (fractional or whole) and rest duration from rest string
+ * @param {string} rest : Rest string
+ * @returns {object} : If valid, rest type and duration. If invalid, "Bad" and 0
+ */
+function is_correct_rest(rest) {
+    var result_rest = {
+        type: "Bad",
+        duration: 0
+    }
+
+    // For valid rest types
+    var rest_type = rest[rest.length - 1]
+    if(rest_type == '*' || rest_type == '/') {
+        var rest_duration = rest.substring(0, rest.length - 1)
+
+        // If rest duration is not an integer
+        if(!(/^\d+$/.test(rest_duration))) {
+            return result_rest
+        }
+
+        if(rest_type == '*') {
+            result_rest.type = "Whole"
+            result_rest.duration = rest_duration
+        }
+        else {
+            result_rest.type = "Fractional"
+            result_rest.duration = 1 / rest_duration
+        }
+    }
+
+    return result_rest    
+}
+
+module.exports = {are_correct_octaves, are_correct_notes, are_correct_durations, is_correct_rest}

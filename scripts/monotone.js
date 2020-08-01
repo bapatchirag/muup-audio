@@ -1,6 +1,8 @@
-// Import component extraction functions and list of notes
-let index = require("../index")
+// Import component extraction functions
 const comp_check = require("./componentCheck")
+
+// Define valid notes
+const all_notes = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"]
 
 // Any monotonal string to be returned as an object of class Monotone
 class Monotone {
@@ -42,7 +44,7 @@ function getMonotoneComponents(tone) {
     var non_octave_tone = tone.substring(1)
 
     // Get note list
-    var note_obj = comp_check.are_correct_notes(non_octave_tone, index.all_notes)
+    var note_obj = comp_check.are_correct_notes(non_octave_tone, all_notes)
     mono_obj.notes = note_obj.notes
     mono_obj.note_count = note_obj.note_count
 

@@ -48,7 +48,7 @@ function getPolytoneComponents(tone) {
     poly_obj.note_count = note_obj.note_count
 
     // Checks for bad notes - extra condition to double check
-    if(poly_obj.note_count == 0 || poly_obj.notes == "Bad") {
+    if(poly_obj.note_count == 0 || poly_obj.notes == "Bad" || poly_obj.note_count != poly_obj.octave_count) {
         return poly_obj
     }
 

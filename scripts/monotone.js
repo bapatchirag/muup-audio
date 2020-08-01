@@ -65,7 +65,7 @@ function getMonotoneComponents(tone) {
     mono_obj.duration_count = duration_obj.duration_count
 
     // Checks for bad durations - extra condition to double check
-    if(mono_obj.duration_count == 0 || mono_obj.duration == "Bad") {
+    if(mono_obj.duration_count == 0 || mono_obj.duration == "Bad" || mono_obj.duration_count != mono_obj.note_count) {
         return mono_obj
     }
     mono_obj.bad_element_count--

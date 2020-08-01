@@ -18,7 +18,7 @@ class Monotone {
 /**
  * Given tone, return object of type Monotone with appropriate attributes
  * @param {string} tone : String without leading M()
- * @returns {object} : Final erroneous/correct Monotone object
+ * @returns {Monotone} : Final erroneous/correct Monotone object
  */
 function getMonotoneComponents(tone) {
     // Create a Monotone object, to be returned

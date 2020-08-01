@@ -18,7 +18,7 @@ class Polytone {
 /**
  * Given tone, return object of type Polytone with appropriate attributes
  * @param {string} tone : String without leading P()
- * @returns {object} : Final erroneous/correct Polytone object
+ * @returns {Polytone} : Final erroneous/correct Polytone object
  */
 function getPolytoneComponents(tone) {
     // Create a Polytone object, to be returned

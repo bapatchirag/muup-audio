@@ -215,7 +215,7 @@ function are_correct_durations(no_note_tone, type) {
                     return errors.errorFound(5)
                 }
                 else {
-                    result_durations.durations.push(duration_unaug_single + "n.")
+                    result_durations.durations.push(duration_aug_single + "n.")
                     result_durations.duration_count = 1
                 }
             }
@@ -230,17 +230,17 @@ function are_correct_durations(no_note_tone, type) {
                     var duration_unaug_multi = element
 
                     // Check whether duration is valid
-                    return ((/^\d+$/.test(duration_unaug_multi)) && parseInt(duration_unaug_multi) == duration_unaug_multi && Math.log2(duration_unaug_single) % 1 === 0)
+                    return ((/^\d+$/.test(duration_unaug_multi)) && parseInt(duration_unaug_multi) == duration_unaug_multi && Math.log2(duration_unaug_multi) % 1 == 0)
                 }
                 else {
                     var duration_aug_multi = element.substring(0, element.length - 1)
     
                     // Check whether duration is valid
-                    return ((/^\d+$/.test(duration_aug_multi)) && parseInt(duration_aug_multi) == duration_aug_multi && Math.log2(duration_unaug_single) % 1 === 0)
+                    return ((/^\d+$/.test(duration_aug_multi)) && parseInt(duration_aug_multi) == duration_aug_multi && Math.log2(duration_aug_multi) % 1 == 0)
                 }                
             }
             // If at least one element is not valid
-            if(!duration_list.every(validate_durations)) {
+            if(!(duration_list.every(validate_durations))) {
                 if(duration_list.length == 0 || duration_list[0] == "") {
                     return errors.errorFound(5)
                 }

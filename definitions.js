@@ -32,14 +32,6 @@ class Rest {
     constructor() {
         this.rest_type = null
         this.rest_amount = 0
-        this.bad_component_count = 2
-    }
-
-    /**
-     * Reduced bad component count when component checks out
-     */
-    not_bad_component() {
-        this.bad_component_count -= 1
     }
 }
 
@@ -49,13 +41,13 @@ class Rest {
 class Token {
     /**
      * Creates a Token object
+     * @param {string} full_string : Complete token string
      * @constructor
      */
-    constructor() {
-        this.token_type = null
-        this.tone_string = null
+    constructor(full_string) {
+        this.token_type = full_string[0]
+        this.tone_string = full_string.substring(2, full_string.length - 1)
         this.time = null
-        this.is_good_token = false
     }
 }
 

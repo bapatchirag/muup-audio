@@ -60,20 +60,6 @@ class Token {
 }
 
 /**
- * @classdesc Describes all tokens of comma separated MuUp string
- */
-class Final {
-    /**
-     * Creates a Final object
-     * @constructor
-     */
-    constructor() {
-        this.are_good_tokens = false
-        this.token_list = []
-    }
-}
-
-/**
  * @classdesc Describes an erroneous event
  */
 class Error {
@@ -91,4 +77,4 @@ class Error {
 // List of valid notes
 const all_notes = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"]
 
-module.exports = {PlayableTone, Rest, Token, Final, Error, all_notes}
+module.exports = {PlayableTone, Rest, Token, Error, all_notes}

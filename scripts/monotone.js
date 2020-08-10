@@ -6,7 +6,7 @@ const errors = require("../errors")
 const all_notes = require("../definitions").all_notes
 
 /**
- * Given tone, return object of type PlayableTone with appropriate attributes
+ * Given tone, return object with appropriate attributes
  * @param {string} tone : String without leading M()
  * @returns {object} : Final erroneous/correct object
  */

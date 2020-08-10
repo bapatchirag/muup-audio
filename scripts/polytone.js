@@ -6,9 +6,9 @@ const errors = require("../errors")
 const all_notes = require("../definitions").all_notes
 
 /**
- * Given tone, return object of type Polytone with appropriate attributes
+ * Given tone, return object with appropriate attributes
  * @param {string} tone : String without leading P()
- * @returns {object} : Final erroneous/correct Polytone object
+ * @returns {object} : Final erroneous/correct object
  */
 function getPolytoneComponents(tone) {
     // Create a Polytone object, to be returned

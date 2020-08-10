@@ -1,43 +1,30 @@
-// Import component extraction functions
+// Import component extraction functions, definitions, errors and valid note list
 const comp_check = require("./componentCheck")
-
-// Define valid notes
-const all_notes = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"]
-
-// Any polytonal string to be returned as an object of class Polytone
-class Polytone {
-    constructor(tone_string) {
-        this.tone_string = tone_string
-        this.octaves = "Bad"
-        this.octave_count = 0
-        this.notes = "Bad"
-        this.note_count = 0
-        this.duration = "Bad"
-        this.bad_element_count = 3
-    }
-}
+const PlayableTone = require("../definitions").PlayableTone
+const Error = require("../definitions").Error
+const errors = require("../errors")
+const all_notes = require("../definitions").all_notes
 
 /**
  * Given tone, return object of type Polytone with appropriate attributes
  * @param {string} tone : String without leading P()
- * @returns {Polytone} : Final erroneous/correct Polytone object
+ * @returns {object} : Final erroneous/correct Polytone object
  */
 function getPolytoneComponents(tone) {
     // Create a Polytone object, to be returned
-    var poly_obj = new Polytone(tone)
+    var poly_obj = new PlayableTone()
 
     // Get octave number(s)
-    var octave_obj = comp_check.are_correct_octaves(tone, "P")
-    poly_obj.octaves = octave_obj.octave
-    poly_obj.octave_count = octave_obj.octave_count
+    var octave_result = comp_check.are_correct_octaves(tone, "P")
 
-    // Check for bad octave - extra condition to double check
-    if(poly_obj.octave_count == 0 || poly_obj.octaves == "Bad") {
-        return poly_obj
+    // Check for bad octave(s)
+    if(octave_result instanceof Error) {
+        return octave_result
     }
-
-    // Update bad element count
-    poly_obj.bad_element_count--
+    else {
+        poly_obj.octaves = octave_result.octaves
+        poly_obj.not_bad_component()
+    }
 
     /* ----------------------------------------------------------------------------------------------------------------------------- */
 
@@ -45,17 +32,19 @@ function getPolytoneComponents(tone) {
     var non_octave_tone = (tone[0] == '[') ? tone.substring(tone.indexOf("]") + 1) : tone.substring(1)
 
     // Get note list
-    var note_obj = comp_check.are_correct_notes(non_octave_tone, all_notes)
-    poly_obj.notes = note_obj.notes
-    poly_obj.note_count = note_obj.note_count
+    var note_result = comp_check.are_correct_notes(non_octave_tone, all_notes)
 
-    // Checks for bad notes - extra condition to double check
-    if(poly_obj.note_count == 0 || poly_obj.notes == "Bad" || poly_obj.note_count != poly_obj.octave_count) {
-        return poly_obj
+    // Checks for bad notes/note-octave count mismatch
+    if(note_result instanceof Error) {
+        return note_result
     }
-
-    // Update bad element count
-    poly_obj.bad_element_count--
+    else if(poly_obj.octaves.length != 1 && note_result.note_count != poly_obj.octaves.length) {
+        return errors.errorFound(10)
+    }
+    else {
+        poly_obj.notes = note_result.notes
+        poly_obj.not_bad_component()        
+    }
 
     /* ----------------------------------------------------------------------------------------------------------------------------- */
 
@@ -63,17 +52,24 @@ function getPolytoneComponents(tone) {
     var non_note_tone = non_octave_tone.substring(non_octave_tone.indexOf("]") + 1)
 
     // Get duration(s)
-    var duration_obj = comp_check.are_correct_durations(non_note_tone, "P")
-    poly_obj.duration = duration_obj.durations
+    var duration_result = comp_check.are_correct_durations(non_note_tone, "P")
 
     // Checks for bad durations - extra condition to double check
-    if(poly_obj.durations == "Bad") {
-        return poly_obj
+    if(duration_result instanceof Error) {
+        return duration_result
     }
-    poly_obj.bad_element_count--
+    else {
+        poly_obj.durations = duration_result.durations
+        poly_obj.not_bad_component()
+    }
 
     // Return final errorless polytone object
-    return poly_obj
+    if(poly_obj.bad_component_count == 0) {
+        return poly_obj
+    }
+    else {
+        return errors.errorFound(13)
+    }
 }
 
 module.exports = {getPolytoneComponents}

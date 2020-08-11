@@ -269,16 +269,16 @@ function are_correct_durations(no_note_tone, type) {
  */
 function is_correct_rest(rest) {
     var result_rest = {
-        type: "Bad",
+        is_good: false,
         duration: 0
     }
 
-    if(rest.length <= 1) {
+    if(rest.length < 1) {
         return errors.errorFound(7)
     }
 
     // For valid rest types
-    var rest_type = rest[rest.length - 1]
+    /*var rest_type = rest[rest.length - 1]
     if(rest_type == '*' || rest_type == '/') {
         var rest_duration = rest.substring(0, rest.length - 1)
 
@@ -298,6 +298,24 @@ function is_correct_rest(rest) {
     }
     else {
         return errors.errorFound(8)
+    }*/
+    if(rest[rest.length - 1] != '.') {
+        if(!(/^\d+$/.test(rest)) || Math.log2(rest) % 1 !== 0) {
+            return errors.errorFound(9)
+        }
+        else {
+            result_rest.is_good = true
+            result_rest.duration = rest + "n"
+        }
+    }
+    else {
+        if(!(/^\d+$/.test(rest.substring(0, rest.length - 1))) || Math.log2(rest.substring(0, rest.length - 1)) % 1 !== 0) {
+            return errors.errorFound(9)
+        }
+        else {
+            result_rest.is_good = true
+            result_rest.duration = rest.substring(0, rest.length - 1) + "n."
+        }
     }
 
     return result_rest    

@@ -1,5 +1,7 @@
 const Tone = require("tone")
 const polytone = require("./scripts/polytone")
+const monotone = require("./scripts/monotone")
+const rest = require("./scripts/rest")
 const errors = require("./errors")
 const Token = require("./definitions").Token
 const Error = require("./definitions").Error
@@ -64,7 +66,6 @@ function tokenizeAndValidatePrefix(muup) {
  */
 function getToneObjects(token_list) {
     var tone_obj_list = []
-    var complete_notes = []
 
     // Iterate through every token in the list of tokens
     token_list.forEach((token) => {
@@ -74,7 +75,8 @@ function getToneObjects(token_list) {
                 tone_obj_list = [poly_obj]
                 return tone_obj_list
             }
-            else {                
+            else {   
+                var complete_notes = []             
                 if(poly_obj.octaves.length == 1) {
                     complete_notes = poly_obj.notes.map((note) => {
                         return note + poly_obj.octaves[0]
@@ -90,6 +92,34 @@ function getToneObjects(token_list) {
                 note: complete_notes,
                 duration: poly_obj.durations[0]
             })
+        }
+        else if(token.token_type == "M") {
+            var mono_obj = monotone.getMonotoneComponents(token.tone_string)
+            if(mono_obj instanceof Error) {
+                tone_obj_list = [mono_obj]
+                return tone_obj_list
+            }
+            else {
+                for (let index = 0; index < mono_obj.durations.length; index++) {
+                    tone_obj_list.push({
+                        note: mono_obj.notes[index] + mono_obj.octaves[0],
+                        duration: mono_obj.durations[index]
+                    })
+                }
+            }
+        }
+        else if(token.token_type == "R") {
+            var rest_obj = rest.getRestComponents(token.tone_string)
+            if(rest_obj instanceof Error) {
+                tone_obj_list = [rest_obj]
+                return tone_obj_list
+            }
+            else {
+                tone_obj_list.push({
+                    note: "rest",
+                    duration: rest_obj.rest_amount
+                })
+            }
         }
     })
     return tone_obj_list
@@ -112,7 +142,9 @@ function playAudio(muup) {
         if(!(tone_obj_list[0] instanceof Error)) {
             var time = Tone.now()
             tone_obj_list.forEach((obj) => {
-                polysynth.triggerAttackRelease(obj.note, obj.duration, time)
+                if(obj.note != "rest") {
+                    polysynth.triggerAttackRelease(obj.note, obj.duration, time)
+                }
                 time += Tone.Time(obj.duration).toSeconds()
             })
         }

@@ -32,7 +32,7 @@ class Rest {
     constructor() {
         this.rest_type = null
         this.rest_amount = 0
-    }
+    }   
 }
 
 /**
@@ -47,7 +47,6 @@ class Token {
     constructor(full_string) {
         this.token_type = full_string[0]
         this.tone_string = full_string.substring(2, full_string.length - 1)
-        this.time = null
     }
 }
 

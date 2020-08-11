@@ -277,28 +277,7 @@ function is_correct_rest(rest) {
         return errors.errorFound(7)
     }
 
-    // For valid rest types
-    /*var rest_type = rest[rest.length - 1]
-    if(rest_type == '*' || rest_type == '/') {
-        var rest_duration = rest.substring(0, rest.length - 1)
-
-        // If rest duration is not an integer
-        if(!(/^\d+$/.test(rest_duration)) || Math.log2(rest_duration) % 1 !== 0) {
-            return errors.errorFound(9)
-        }
-
-        if(rest_type == '*') {
-            result_rest.type = "Whole"
-            result_rest.duration = rest_duration
-        }
-        else {
-            result_rest.type = "Fractional"
-            result_rest.duration = (1 / rest_duration).toString()
-        }
-    }
-    else {
-        return errors.errorFound(8)
-    }*/
+    // Check for augmented dot
     if(rest[rest.length - 1] != '.') {
         if(!(/^\d+$/.test(rest)) || Math.log2(rest) % 1 !== 0) {
             return errors.errorFound(9)

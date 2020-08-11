@@ -19,7 +19,6 @@ function getRestComponents(rest) {
         return rest_check_result
     }
     else {
-        //rest_obj.rest_type = rest_check_result.type
         rest_obj.rest_amount = rest_check_result.duration
         return rest_obj
     }

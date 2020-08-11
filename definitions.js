@@ -30,7 +30,6 @@ class Rest {
      * @constructor
      */
     constructor() {
-        //this.rest_type = null
         this.rest_amount = ""
     }   
 }

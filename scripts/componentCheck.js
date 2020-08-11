@@ -293,7 +293,7 @@ function is_correct_rest(rest) {
         }
         else {
             result_rest.type = "Fractional"
-            result_rest.duration = 1 / rest_duration
+            result_rest.duration = (1 / rest_duration).toString()
         }
     }
     else {

@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/bapatchirag/muup-audio/issues"
   },
-  "homepage": "bapatchirag.github.io/muup-audio",
+  "homepage": "https://bapatchirag.github.io/muup-audio",
   "devDependencies": {
     "browserify": "^16.5.1",
     "chai": "^4.2.0",

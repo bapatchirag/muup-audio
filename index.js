@@ -1,4 +1,4 @@
-const Tone = require("./node_modules/tone/Tone")
+const Tone = require("tone")
 const polytone = require("./scripts/polytone")
 const errors = require("./errors")
 const Token = require("./definitions").Token
@@ -87,7 +87,7 @@ function getToneObjects(token_list) {
                 }
             }
             tone_obj_list.push({
-                notes: complete_notes,
+                note: complete_notes,
                 duration: poly_obj.durations[0]
             })
         }
@@ -95,4 +95,38 @@ function getToneObjects(token_list) {
     return tone_obj_list
 }
 
-module.exports = {setBPM}
+/**
+ * Plays audio from complete MuUp string
+ * @param {string} muup : Complete MuUp string
+ */
+function playAudio(muup) {
+    var status = {
+        instance: "Success",
+        message: "OK"
+    }
+
+    const token_obj = tokenizeAndValidatePrefix(muup)
+    if(!(token_obj instanceof Error)) {
+        const tone_obj_list = getToneObjects(token_obj.tokens)
+
+        if(!(tone_obj_list[0] instanceof Error)) {
+            var time = Tone.now()
+            tone_obj_list.forEach((obj) => {
+                polysynth.triggerAttackRelease(obj.note, obj.duration, time)
+                time += Tone.Time(obj.duration).toSeconds()
+            })
+        }
+        else {
+            status.instance = "Error"
+            status.message = tone_obj_list[0].message
+        }
+    }
+    else {
+        status.instance = "Error"
+        status.message = token_obj.message
+    }
+
+    return status
+}
+
+module.exports = {setBPM, playAudio}

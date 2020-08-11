@@ -1,4 +1,11 @@
-const Tone = require("tone")
+const Tone = require("./node_modules/tone/Tone")
+const polytone = require("./scripts/polytone")
+const errors = require("./errors")
+const Token = require("./definitions").Token
+const Error = require("./definitions").Error
+
+// Set up PolySynth for playing polytones
+const polysynth = new Tone.PolySynth(5, Tone.Synth).toMaster()
 
 /**
  * Sets BPM of the piece via the Transport global of ToneJS
@@ -28,10 +35,11 @@ function tokenizeAndValidatePrefix(muup) {
     function validate_prefix(element) {
         const first_two_chars = element.substring(0, 2)
         const last_char = element[element.length - 1]
+        validate_result.tokens.push(new Token(element))
 
         // Check if first two characters match appropriate prefix
         if(first_two_chars == "M(" || first_two_chars == "P(" || first_two_chars == "R(") {
-            // Check if last character is closing paranthesis
+            // Check if last character is closing parenthesis
             return (last_char == ")")
         }
 
@@ -39,17 +47,52 @@ function tokenizeAndValidatePrefix(muup) {
     }
 
     // Check if all prefixes are validated
-    if(separated_list.every(validate_prefix)) {
+    if(separated_list.every(validate_prefix)) { 
         validate_result.good = true
-        validate_result.tokens = separated_list.map((token) => {
-            return {
-                type: token[0],
-                tone_string: token.substring(2, token.length - 1)
-            }
-        })
+    }
+    else {
+        return errors.errorFound(0)
     }
 
     return validate_result
+}
+
+/**
+ * Sets the times of all tokens to be played (currently only Polytone)
+ * @param {Array<Token>} token_list : List of verified Token objects
+ * @returns {Array<object>} : If valid tone_strings for all tokens, list of playable objects. If not, singleton list of error object.
+ */
+function getToneObjects(token_list) {
+    var tone_obj_list = []
+    var complete_notes = []
+
+    // Iterate through every token in the list of tokens
+    token_list.forEach((token) => {
+        if(token.token_type == "P") {
+            var poly_obj = polytone.getPolytoneComponents(token.tone_string)
+            if(poly_obj instanceof Error) {
+                tone_obj_list = [poly_obj]
+                return tone_obj_list
+            }
+            else {                
+                if(poly_obj.octaves.length == 1) {
+                    complete_notes = poly_obj.notes.map((note) => {
+                        return note + poly_obj.octaves[0]
+                    })
+                }
+                else {
+                    for (let index = 0; index < poly_obj.octaves.length; index++) {
+                        complete_notes.push(poly_obj.notes[index] + poly_obj.octaves[index])                        
+                    }
+                }
+            }
+            tone_obj_list.push({
+                notes: complete_notes,
+                duration: poly_obj.durations[0]
+            })
+        }
+    })
+    return tone_obj_list
 }
 
 module.exports = {setBPM}

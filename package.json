@@ -1,6 +1,6 @@
 {
   "name": "muup-audio",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Play audio converted from text written in custom language MuUp",
   "main": "index.js",
   "scripts": {

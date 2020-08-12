@@ -62,19 +62,12 @@ Polytones are written specific to duration, which means all the notes in the pol
 
 Rests are periods of silence in music. To specify the number of beats for which a rest is to be maintained, the following scheme is followed:
 
-1. If the number of beats are more than or equal to 1, the notation would be `R(<beats>*)`.
+For a rest of an xth note, the rest component will be written as `R(x)`.
 
-    For example, if a 2 beat rest is to be given, the notation for the same would be
-    ```
-    R(2*)
-    ```
-
-2. If the number of beats is a fraction of 1, the notation would be `R(<fraction>/)`.
-
-    For example, if a half beat (1/2) rest is to be maintained, the notation for it would be
-    ```
-    R(2/)
-    ```
+For example, a 16th note rest will be notated as:
+```
+R(16)
+```
 
 For a complete list of examples, click [here](examples.md).
 

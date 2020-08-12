@@ -100,11 +100,21 @@ function getToneObjects(token_list) {
                 return tone_obj_list
             }
             else {
-                for (let index = 0; index < mono_obj.durations.length; index++) {
-                    tone_obj_list.push({
-                        note: mono_obj.notes[index] + mono_obj.octaves[0],
-                        duration: mono_obj.durations[index]
-                    })
+                if(mono_obj.durations.length != 1) {
+                    for (let index = 0; index < mono_obj.notes.length; index++) {
+                        tone_obj_list.push({
+                            note: mono_obj.notes[index] + mono_obj.octaves[0],
+                            duration: mono_obj.durations[index]
+                        })
+                    }
+                }
+                else {
+                    for (let index = 0; index < mono_obj.notes.length; index++) {
+                        tone_obj_list.push({
+                            note: mono_obj.notes[index] + mono_obj.octaves[0],
+                            duration: mono_obj.durations[0]
+                        })
+                    }
                 }
             }
         }

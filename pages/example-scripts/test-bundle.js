@@ -320,7 +320,7 @@ const muup = require("../../index")
 
 document.getElementById("simple-g").addEventListener("click", () => {
     muup.setBPM(90)
-    const status = muup.playAudio("M(4[G A B C D E F#]4), M(5[G]4)")
+    const status = muup.playAudio("M(4[G A B]4), M(5[C D E F# G]4)")
 })
 },{"../../index":3}],6:[function(require,module,exports){
 // Import error handler

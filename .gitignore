@@ -111,3 +111,6 @@ tests/
 
 # NPM Ignored Files
 .npmignore
+
+# Examples test file
+pages/test.js

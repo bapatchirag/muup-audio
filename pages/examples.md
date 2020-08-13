@@ -4,13 +4,13 @@
 
 To play a simple G Major scale from the 4th to the 5th octave as 4th notes, the MuUp script required is:
 ```
-M(4[G A B C D E F#]4), M(5[G]4)
+M(4[G A B]4), M(5[C D E F# G]4)
 ```
 <input type="button" id="simple-g" name="simple-g" value="Try It!">
 
 The same scale with alternating 4th and 8th notes:
 ```
-M(4[G A B C D E F#][4 8 4 8 4 8 4]), M(5[G]8)
+M(4[G A B][4 8 4]), M(5[C D E F# G][8 4 8 4 8])
 ```
 <input type="button" id="complex-g" name="complex-g" value="Try It!">
 <hr>

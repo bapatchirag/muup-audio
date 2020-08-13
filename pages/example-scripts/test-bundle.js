@@ -322,6 +322,31 @@ document.getElementById("simple-g").addEventListener("click", () => {
     muup.setBPM(90)
     const status = muup.playAudio("M(4[G A B]4), M(5[C D E F# G]4)")
 })
+
+document.getElementById("complex-g").addEventListener("click", () => {
+    muup.setBPM(90)
+    const status = muup.playAudio("M(4[G A B][4 8 4]), M(5[C D E F# G][8 4 8 4 8])")
+})
+
+document.getElementById("turkish").addEventListener("click", () => {
+    muup.setBPM(151)
+    const status = muup.playAudio("M(4[B A G# A]16), M(5[C]8), R(8), M(5[D C]16), M(4[B]16), M(5[C E][16 8])")
+})
+
+document.getElementById("waltz").addEventListener("click", () => {
+    muup.setBPM(136)
+    const status = muup.playAudio("M(3[E]4), P([3 4][A C]4), P(3[G B]4), M(2[B]4), P(3[G B]4), P(3[F# A]4)")
+})
+
+document.getElementById("barcarolle").addEventListener("click", () => {
+    muup.setBPM(42)
+    const status = muup.playAudio("M(4[Eb C]8), M(3[Bb Ab][8 4.]), M(4[Eb C]8), M(3[Bb Ab][8 4.]), P(4[C F Ab]4.), P(4[Eb G Bb]4.), P([4 4 5][Eb Ab C]2.)")
+})
+
+document.getElementById("canon").addEventListener("click", () => {
+    muup.setBPM(68)
+    const status = muup.playAudio("M(4[D]8), P(4[D F#]8), P(4[D A]8), P([4 5][D D]8), M(3[A]8), P([3 4][A E]8), P([3 4][A A]8), P([3 5][A C#]8)")
+})
 },{"../../index":3}],6:[function(require,module,exports){
 // Import error handler
 const errors = require("../errors")

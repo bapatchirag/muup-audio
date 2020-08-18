@@ -59,4 +59,4 @@ M(4[D]8), P(4[D F#]8), P(4[D A]8), P([4 5][D D]8), M(3[A]8), P([3 4][A E]8), P([
 
 <script src="./example-scripts/test-bundle.js"></script>
 
-[Back to home](../README.md)
+[Back to home](https://bapatchirag.github.io/muup-audio/)

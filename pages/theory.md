@@ -63,6 +63,6 @@ To change the feeling provided by the same group of notes, dynamics are provided
 
 <br>
 
-Proceed [here](examples.md) to read up on some examples, or [here](muup.md) to explore MuUp script writing.
+Proceed [here](https://bapatchirag.github.io/muup-audio/pages/examples.html) to read up on some examples, or [here](https://bapatchirag.github.io/muup-audio/pages/muup.html) to explore MuUp script writing.
 
-[Back to home](../README.md)
+[Back to home](https://bapatchirag.github.io/muup-audio/)

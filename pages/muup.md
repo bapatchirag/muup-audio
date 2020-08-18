@@ -2,7 +2,7 @@
 
 MuUp is a text script, designed for representing musical notes along with their attributes in a textual format, able to be read as a string of characters.
 
-To read up on some basic music theory to make writing the MuUp script simpler and easier to understand, [click here](theory.md).
+To read up on some basic music theory to make writing the MuUp script simpler and easier to understand, [click here]([theory.md](https://bapatchirag.github.io/muup-audio/pages/theory.html)).
 
 ## How does it work
 
@@ -11,7 +11,7 @@ The entire MuUp text is split along commas (separator - ", ") into individual co
 2. A polyphonic chord, specified across octaves, for either individually specified duration or a common duration - Polytones.
 3. A rest specified for a certain number of beats - Notones/Rests.
 
-In MuUp, the Western system of music has been implemented, which would include the notes, durations and octaves explained [here](theory.md#notes).
+In MuUp, the Western system of music has been implemented, which would include the notes, durations and octaves explained [here](https://bapatchirag.github.io/muup-audio/pages/theory.html#notes).
 
 # How to write MuUp
 
@@ -69,13 +69,13 @@ For example, a 16th note rest will be notated as:
 R(16)
 ```
 
-For a complete list of examples, click [here](examples.md).
+For a complete list of examples, click [here](https://bapatchirag.github.io/muup-audio/pages/examples.html).
 
 <br>
 
 # Notes
 - Currently, the MuUp script and this module does not support the writing and playing of dynamics.
-- Playing of polytones which have notes of different durations is currently not supported. To do so, split the notes into sets of notes with the least amount of common time, and group the remaining notes as either monotones or polytones. Examples of this are present [here](examples.md).
+- Playing of polytones which have notes of different durations is currently not supported. To do so, split the notes into sets of notes with the least amount of common time, and group the remaining notes as either monotones or polytones. Examples of this are present [here](https://bapatchirag.github.io/muup-audio/pages/examples.html#playing-the-treble-and-bass-clefs-together).
 
 <br>
-[Back to home](../README.md)
+[Back to home](https://bapatchirag.github.io/muup-audio/)

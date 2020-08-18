@@ -6,9 +6,9 @@ Play audio using a new script called MuUp, enabling you to type in music, and he
 
 MuUp offers an easy and convenient way to (manually, for now) translate music to a string of text, capable of being analysed by software. By grouping notes together, it decreases the amount of text to be typed to represent the same piece of music. 
 
-- Learn [how to](pages/muup.md) write some MuUp.
-- If you're new to music, have a look at some [basic music theory](pages/theory.md).
-- To look up some examples, see [here](pages/examples.md).
+- Learn [how to](https://bapatchirag.github.io/muup-audio/pages/muup.html) write some MuUp.
+- If you're new to music, have a look at some [basic music theory](https://bapatchirag.github.io/muup-audio/pages/theory.html).
+- To look up some examples, see [here](https://bapatchirag.github.io/muup-audio/pages/examples.html).
 
 
 # Installation
